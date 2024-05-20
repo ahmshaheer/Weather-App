@@ -1,22 +1,21 @@
 name: Portfolio website
 
 on:
-  push: 
+  push:
     branches:
-    - main
+      - main
 jobs:
   buidling:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout
-      uses: actions/checkout@v1
+      - name: checkout
+        uses: actions/checkout@v1
 
-    - name: AWS Configure Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: $({secrets.AWS_ACCESS_Key})
-        aws-secret-key-id: $({secrets.AWS_SECRET_Key})
-        aws-region: us-east-1
-    - name: Deploying webiste on s3 Bucket
-      run: aws s3 sync . s3://Weather-App --delete 
-    
+      - name: AWS Configure Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESS_Key_ID}}
+          aws-secret-key-id: ${{secrets.AWS_SECRET_ACCESS_Key}}
+          aws-region: us-east-1
+      - name: Deploying webiste on s3 Bucket
+        run: aws s3 sync . s3://Weather-App --delete
