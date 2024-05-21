@@ -28,5 +28,12 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: Verify S3 Bucket
+        run: |
+          if ! aws s3 ls "s3://weather132321" ; then
+            echo "S3 bucket does not exist. Creating it."
+            aws s3 mb s3://weather132321
+          fi
+
       - name: Deploy static site to S3 bucket
         run: aws s3 sync ./build s3://weather132321
