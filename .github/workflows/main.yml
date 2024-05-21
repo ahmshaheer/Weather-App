@@ -30,10 +30,10 @@ jobs:
 
       - name: Verify S3 Bucket
         run: |
-          if ! aws s3 ls "s3://weather132321" ; then
+          if ! aws s3 ls "s3://weather123321" ; then
             echo "S3 bucket does not exist. Creating it."
-            aws s3 mb s3://weather132321
+            aws s3 mb s3://weather123321
           fi
 
       - name: Deploy static site to S3 bucket
-        run: aws s3 sync ./build s3://weather132321
+        run: aws s3 sync ./build s3://weather123321
