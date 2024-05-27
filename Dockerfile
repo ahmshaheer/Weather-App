@@ -21,7 +21,8 @@ COPY package.json package-lock.json* ./
 
 # Install dependencies with npm
 # Using a different registry to avoid potential issues with the default one
-RUN npm install --registry=https://registry.npmjs.cf/ --verbose
+RUN npm cache clean --force \
+    && npm install --registry=https://registry.npmjs.org/ --verbose || (mkdir -p /app/npm-debug && cp /root/.npm/_logs/* /app/npm-debug/ && exit 1)
 
 # Copy all remaining application files
 COPY . .
