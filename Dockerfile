@@ -17,7 +17,7 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json (if available)
-COPY package.json package-lock.json* ./
+COPY package.json .
 
 # Install dependencies with npm
 # Using a different registry to avoid potential issues with the default one
